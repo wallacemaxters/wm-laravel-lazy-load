@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular WM Laravel Lazy Load</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js'></script>
+    <script src="angular-wm-laravel-lazy-load.min.js"></script>
+
+
+    <script type="text/javascript">
+        angular.module('app', ['wm.laravel-lazy-load'])
+
+        .controller('AppController', function ($scope, WMLaravelLazyLoad) {
+            $scope.users = new WMLaravelLazyLoad('/test.json');
+        });
+    </script>
+</head>
+<body ng-app="app">
+    <div ng-controller="AppController">
+        <div ng-repeat="user in users.data">
+            <li ng-bind="user.name"></li>
+        </div>
+    </div>
+</body>
+</html>
