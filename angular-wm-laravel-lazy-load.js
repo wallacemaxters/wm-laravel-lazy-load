@@ -39,9 +39,11 @@ angular.module('wm.laravel-lazy-load', ['ng']).service('WMLaravelLazyLoad', ['$h
 
     WMLaravelLazyLoad.prototype.untilCompleted = function () {
 
-        var that = this;
-        
-        that.next().then(function () {
+        var that = this, promise;
+
+        promise = that.next();
+
+        promise && promise.then(function () {
             that.untilCompleted();
         })
     };
